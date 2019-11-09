@@ -143,7 +143,7 @@ class Vehicle(Actor):
         """
         vehicle_object = Object(header=self.get_msg_header())
         # ID
-        vehicle_object.id = self.get_global_id()
+        vehicle_object.id = self.carla_actor.id
         # Pose
         vehicle_object.pose = self.get_current_ros_pose()
         # Twist

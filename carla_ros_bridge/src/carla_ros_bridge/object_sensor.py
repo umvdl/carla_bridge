@@ -20,8 +20,9 @@ def get_filtered_objectarray(parent, filtered_id):
     """
     ros_objectlist = ObjectArray()
     ros_objectlist.header = parent.get_msg_header()
-    for actor_id, child in parent.child_actors.iteritems():
+    child_actors_buffer = dict(parent.child_actors) # dictionary may change during iteration
+    for actor_id, child in child_actors_buffer.items():
         # currently only Vehicles are added to the object array
-        if filtered_id is not actor_id and isinstance(child, Vehicle):
+        if filtered_id != actor_id and isinstance(child, Vehicle):
             ros_objectlist.objects.append(child.get_ros_object_msg())
     return ros_objectlist

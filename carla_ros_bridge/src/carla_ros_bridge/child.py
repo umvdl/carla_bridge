@@ -75,6 +75,9 @@ class Child(Parent):
         :return: The latest received ROS time of the bridge
         :rtype: rospy.Time
         """
+        if not self.parent:
+            rospy.logerr("!!!!!!!!! Cannot access parent !!!!!!!!!")
+            return rospy.Time()
         return self.parent.get_current_ros_time()
 
     def publish_ros_message(self, topic, msg, is_latched=False):
